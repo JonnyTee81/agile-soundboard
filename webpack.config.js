@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
+  mode: 'development',
   context: path.join(__dirname, "src"),
   entry: "./index.js",
   output: {
@@ -23,5 +23,10 @@ module.exports = {
       template: "./index.html",
       inject: "body"
     })
-  ]
+  ],
+  performance: {
+    maxAssetSize: 100000,
+    maxEntrypointSize: 300000,
+    hints: 'warning'
+  }
 };
