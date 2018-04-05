@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: "development",
   context: path.join(__dirname, "src"),
   entry: "./index.js",
   output: {
@@ -22,11 +23,15 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./index.html",
       inject: "body"
-    })
+    }),
+    new CopyWebpackPlugin([{
+      from: "./sounds",
+      to: path.resolve(__dirname, "dist/sounds")
+    }])
   ],
   performance: {
     maxAssetSize: 100000,
     maxEntrypointSize: 300000,
-    hints: 'warning'
+    hints: "warning"
   }
 };
